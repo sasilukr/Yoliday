@@ -1,6 +1,4 @@
 var express = require('express');
-var request = require('request');
-
 var _ = require('underscore');
 var querystring = require('querystring');
 
@@ -27,7 +25,7 @@ app.use(express.bodyParser());    // Middleware for reading request body
 
 
 app.get('/yoliday', function(req, res) {
-    var yoName = req.params.username; //ch4ch4
+    var yoName = req.query.username; //ch4ch4
 //  var yoLink = req.params.link; //http://harveychan.net
 //  var tempLocation = req.params.location; //42.360091;-71.09415999999999
 //  var yoLatitude = (tempLocation.split(';'))[0];
@@ -39,14 +37,25 @@ app.get('/yoliday', function(req, res) {
     var mm = today.getMonth()+1; //January is 0!
     var yyyy = today.getFullYear();
 
-    mm = 12;
-
     Parse.Cloud.httpRequest({
         url: 'http://holidayapi.com/v1/holidays&country=us&year='+ yyyy + '&day=' + dd + '&month=' + mm,
         method: "GET",
         success: function (httpResponse) {
-            var yoLink = 'https://www.google.com/search?q=' + httpResponse.holidays[0].name;
-            SendYo(yoName,yoLink);
+            var data = JSON.parse(httpResponse.text);
+//            console.log("httpResponse " + JSON.stringify(httpResponse));
+//            console.log("httpResponse.text " + JSON.stringify(httpResponse.text));
+//            console.log("httpResponse.text.holidays " + JSON.stringify(httpResponse.text.holidays));
+            console.log("Holiday on " + mm + "/" + dd + "/" + yyyy + ": " + JSON.stringify(data["holidays"]));
+            var holidayName = "No+Holiday";
+
+            if ( data["holidays"].length > 0 ) {
+                holidayName = data["holidays"][0].name;
+            }
+
+            var yoLink = 'https://www.google.com/search?q=' + holidayName;
+            SendYo(yoName,yoLink, function(){
+                res.end();
+            });
         },
         error: function (httpResponse) {
             console.log("Error getting holiday api " + httpResponse);
@@ -67,15 +76,17 @@ function SendYo(yoUsername, yoLink, callback){
                 username: yoUsername
             },
             success: function (httpResponse) {
+                console.log("Yo is sent to " + yoUsername + " with " + yoLink);
                 callback();
             },
             error: function (httpResponse) {
-
+                console.log("Fail to YO");
                 callback();
             }
         });
     }, function(error) {
         // Something went wrong (e.g. request timed out)
+        console.log("Fail to get parse Config");
         callback();
     });
 }
