@@ -20,8 +20,8 @@
 <ul>
     <% for(var i=0; i<yolidays.length; i++) { %>
     <li class="li-<%= i % 9%>">
-        <a href='<%= yolidays[i].holiday.href %>'>
-            <%= yolidays[i].holiday.text %>
+        <a href='<%= yolidays[i].first.href %>'>
+            <%= yolidays[i].first.text %>
         </a>
     </li>
     <% } %>
