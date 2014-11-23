@@ -26,8 +26,8 @@ app.use(express.bodyParser());    // Middleware for reading request body
 
 app.get('/yoliday', function(req, res) {
     var yoName = req.query.username;
-//  var yoLink = req.params.link;
-//  var tempLocation = req.params.location; //42.360091;-71.09415999999999
+//  var yoLink = req.query.link;
+//  var tempLocation = req.query.location; //42.360091;-71.09415999999999
 //  var yoLatitude = (tempLocation.split(';'))[0];
 //  var yoLongitude = (tempLocation.split(';'))[1];
 //  res.end('username ='+yoName+' link='+yoLink);
