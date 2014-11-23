@@ -19,7 +19,7 @@
 <h1><%= currentDate %></h1>
 <ul>
     <% for(var i=0; i<yolidays.length; i++) { %>
-    <li>
+    <li class="li-<%= i % 9%>">
         <a href='<%= yolidays[i].holiday.href %>'>
             <%= yolidays[i].holiday.text %>
         </a>

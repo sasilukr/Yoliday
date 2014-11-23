@@ -100,7 +100,7 @@ app.get('/today', function(req, res) {
 
 
     //            ------ kimono lab api ------
-                res.render('yoliday', {yolidays: data.results.holidays, currentDate: monthNames[m] + " " + d + ", " + y});
+                res.render('yoliday', {yolidays: data.results.holidays, currentDate: monthNames[m] + " " + d});
     //            res.json(data.results.holidays);
     //            res.json(data.results.holidays);
 

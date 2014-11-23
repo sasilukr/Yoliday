@@ -1,18 +1,63 @@
-body, a {
+body{
     background-color: #9B59B6;
     color: white;
     font-size: 30px;
     font-family: monospace;
+    margin: 0px;
+    padding: 0px;
     text-transform:  uppercase;
     text-align: center;
 }
 
 a {
+    color: white;
+    font-size: 30px;
+    font-family: monospace;
+    text-align: center;
+    text-transform: uppercase;
     text-decoration: none;
 }
 
 ul {
     list-style: none;
     color: white;
+    padding-left: 0px;
 }
 
+li {
+    padding: 30px;
+}
+
+.li-0 {
+    background-color: #1ABC9C;
+}
+
+.li-1 {
+    background-color: #2ECC71;
+}
+
+.li-2 {
+    background-color: #3498DB;
+}
+
+.li-3{
+    background-color: #34495E;
+}
+
+.li-4{
+    background-color: #16A085;
+}
+
+.li-5{
+    background-color: #F1c40F;
+}
+
+.li-6{
+    background-color: #2980B9;
+}
+.li-7{
+    background-color: #8E44AD;
+}
+.li-8{
+    background-color: #E74C3C;
+}
