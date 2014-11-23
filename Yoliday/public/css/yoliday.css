@@ -1,8 +1,8 @@
 body{
     background-color: #9B59B6;
     color: white;
-    font-size: 30px;
-    font-family: monospace;
+    font-size: 70px;
+    font-family: sans-serif;
     margin: 0px;
     padding: 0px;
     text-transform:  uppercase;
@@ -11,17 +11,24 @@ body{
 
 a {
     color: white;
-    font-size: 30px;
-    font-family: monospace;
+    font-size: 80px;
+    font-family: sans-serif;
+    font-weight: bold;
     text-align: center;
     text-transform: uppercase;
     text-decoration: none;
+
+}
+
+h1 {
+    margin: 2px 0;
 }
 
 ul {
     list-style: none;
     color: white;
     padding-left: 0px;
+    margin: 0px;
 }
 
 li {

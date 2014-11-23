@@ -73,7 +73,7 @@ app.get('/today', function(req, res) {
 
         var today = new Date();
         var monthNames = [ "January", "February", "March", "April", "May", "June",
-            "July", "August", "September", "October", "November", "December" ];
+            "July", "August", "September", "October", "Nov", "Dec" ];
         var d = today.getDate();
         var m = today.getMonth();
         var y = today.getFullYear();
