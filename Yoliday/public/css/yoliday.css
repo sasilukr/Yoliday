@@ -1,0 +1,18 @@
+body, a {
+    background-color: #9B59B6;
+    color: white;
+    font-size: 30px;
+    font-family: monospace;
+    text-transform:  uppercase;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+    color: white;
+}
+
