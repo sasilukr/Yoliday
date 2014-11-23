@@ -1,0 +1,15 @@
+{
+    "applications": {
+        "Yoliday": {
+            "applicationId": "OTkplGbtePNLrqtMRX53yMqVuYvn6FlJWTTwXDWw", 
+            "masterKey": "XpRpOvBfQKT0jmAbG1SyqDMHQB05lPFtJrIKQy6E"
+        }, 
+        "_default": {
+            "link": "Yoliday"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.3.1"
+    },
+
+}

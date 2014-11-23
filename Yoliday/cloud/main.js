@@ -1,4 +1,6 @@
 var express = require('express');
+var request = require('request');
+
 var _ = require('underscore');
 var querystring = require('querystring');
 
@@ -37,26 +39,46 @@ app.get('/yoliday', function(req, res) {
     var mm = today.getMonth()+1; //January is 0!
     var yyyy = today.getFullYear();
 
-    var options = {
-        host: 'http://holidayapi.com/v1/holidays&country=us&year='+ yyyy + '&day=' + dd + '&month=' + mm,
-        method: 'GET',
-        headers: {
-            accept: 'application/json'
+    mm = 12;
+
+    Parse.Cloud.httpRequest({
+        url: 'http://holidayapi.com/v1/holidays&country=us&year='+ yyyy + '&day=' + dd + '&month=' + mm,
+        method: "GET",
+        success: function (httpResponse) {
+            var yoLink = 'https://www.google.com/search?q=' + httpResponse.holidays[0].name;
+            SendYo(yoName,yoLink);
+        },
+        error: function (httpResponse) {
+            console.log("Error getting holiday api " + httpResponse);
+//            callback();
         }
-    };
-
-    console.log("Start");
-    var x = http.request(options,function(res){
-        console.log("Connected");
-        res.on('data',function(data){
-            console.log(data);
-        });
     });
-
-    x.end();
-
-
 });
+
+function SendYo(yoUsername, yoLink, callback){
+    Parse.Config.get().then(function(config) {
+        var YO_TOKEN = config.get("YO_TOKEN");
+        Parse.Cloud.httpRequest({
+            url: 'http://api.justyo.co/yo/',
+            method: "POST",
+            body: {
+                link:(yoLink ? yoLink : ''),
+                api_token: YO_TOKEN,
+                username: yoUsername
+            },
+            success: function (httpResponse) {
+                callback();
+            },
+            error: function (httpResponse) {
+
+                callback();
+            }
+        });
+    }, function(error) {
+        // Something went wrong (e.g. request timed out)
+        callback();
+    });
+}
 
 app.get('/outgoingYo', function(req, res) {
 
