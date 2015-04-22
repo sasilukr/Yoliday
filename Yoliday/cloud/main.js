@@ -80,7 +80,7 @@ app.get('/today', function(req, res) {
         var holidaySrc = "";
     //    holidaySrc = 'http://holidayapi.com/v1/holidays&country=us&year='+ yyyy + '&day=' + dd + '&month=' + mm; // US holiday
         holidaySrc = "http://nationaldaycalendar.com/latest-posts/"; // national day blog
-        holidaySrc = "https://www.kimonolabs.com/api/cv6ue1gu?apikey=" + KIMONO_TOKEN; // kimono lab api to checkiday.com with list of national holiday
+        // holidaySrc = "https://www.kimonolabs.com/api/cv6ue1gu?apikey=" + KIMONO_TOKEN; // kimono lab api to checkiday.com with list of national holiday
 
         Parse.Cloud.httpRequest({
             url: holidaySrc,
